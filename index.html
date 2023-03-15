@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>HomeWork7</title>
+    <script src="data.js"></script>
+</head>
+
+<body>
+    <header class="center box">
+
+        <div class="logo">
+            <img src="/img/Logo.png" alt="logo">
+            <img src="/img/search.svg" alt="serch">
+        </div>
+        <div class="options">
+            <img src="/img/header_menu.svg" alt="header_menu">
+            <img class="account" src="/img/header_account.svg" alt="account">
+
+            <a class="add" href="#add_link"> <img class="img_basket" src="/img/add.png" alt="add"></a>          
+           
+         
+            <div>
+                <img class="Count_round" src="/img/Count.png" alt="Count">
+                <p class="Count_text rever"></p>
+            </div>
+            
+            </div>
+
+
+    </header>
+    <main class=" center brand">
+        <img class="main_img_brand" src="/img/img_main.png" alt="main_img_brand">
+
+        <div class="brand_name">
+            <h1 class="title_1">THE BRAND</h1>
+            <h2 class="title_2">OF LUXERIOUS <span class="fashion">FASHION</span></h2>
+        </div>
+    </main>
+
+    <section class="center catalog">
+        <div class="chapter for_women"><img class="for_women_filter" src="/img/for women.png" alt="chapter_for_women">
+            <article class="for_women_text">
+                <h4 class="for_women_text_30">30% OFF</h4>
+                <h5 class="for_women_text_for">FOR WOMEN</h5>
+            </article>
+        </div>
+        <div class="chapter for_men"><img class="for_men_filter" src="/img/for men.png" alt="chapter_for_men">
+            <article class="for_men_text">
+                <h4 class="for_men_text_hot">HOT DEAL</h4>
+                <h5 class="for_men_text_for">FOR MEN</h5>
+            </article>
+        </div>
+
+        <div class="chapter for_kids"><img class="for_kids_filter" src="/img/for kids.png" alt="chapter_for_kids">
+            <article class="for_kids_text">
+                <h4 class="for_kids_text_new">NEW ARRIVALS</h4>
+                <h5 class="for_kids_text_for">FOR KIDS</h5>
+            </article>
+        </div>
+
+        <div class="chapter accesories">
+            <img class="accesories_filter" src="/img/accesories.png" alt="chapter_accesories">
+            <img class="Categories" src="/img/Categories.png" alt="Categories">
+            <article class="accesories_text">
+                <h4 class="accesories_text_luxirous">LUXIROUS & TRENDY</h4>
+                <h5 class="accesories_text_accesories">ACCESORIES</h5>
+            </article>
+        </div>
+    </section>
+
+    <section class="center text">
+        <h3>Fetured Items</h3>
+        <p>Shop for items based on what we featured in this week</p>
+    </section>
+
+<div class="content_js"></div>
+<template class="template">
+    <div class="center content">
+
+        <div class="item">
+            <img class="foto_ image" src="/img/foto_1.jpg" alt="item_1">
+            <div class="content_text">
+                <button class="button_buy"><img src="/img/box_content.png"
+                    alt="box_content">Add to cart</button>                
+                
+                <h4 class="content_title name">ELLERY X M'O CAPSULE</h4>
+                <p class="content_text_detail description">Known for her sculptural takes on traditional tailoring,
+                    Australian
+                    arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
+                <h5 class="price">$52.00</h5>
+            </div>
+        </div>
+    </div>
+</template>
+    
+    <footer class="center buttons">
+        <button class="button_browse_all">Browse All Product</button>      
+    </footer>
+
+
+    <div class="center basket" id="add_link">
+         <h1 class="title_basket">Cart Items</h1>
+            <h1 class="text_basket">Нет товаров в корзине</h1>
+        <div class="box_product">
+           
+            <div class="content_basket"></div>
+            <template class="template_basket">
+    
+                <div class="basket_block">
+                    <img class="close" src="/img/x.svg" alt="close">
+                    <div class="basket_image">
+                        <img class="image_add" src="/img/foto_1.jpg" alt="elem_1">
+                    </div>
+                    <div class="basket_text">
+    
+                        <h1 class="basket_name">ELLERY X M'O CAPSULE</h1>
+                        <p class="basket_description">Known for her sculptural takes on traditional tailoring,
+                            Australian
+                            arbiter of cool Kym Ellery teams up with Moda Operandi.</p>
+                        <p class="basket_price">Price: <span class="priceColor"></span></p>
+                        <p class="quantity">Quantity: <input name="nameInput" type="number" class="input_quantity" value="1"></p>
+                    </div>
+                </div>
+            </template>
+            
+        </div>
+        <a class="link_basket" href="#">На главную страницу</a>
+    </div>
+
+    <script>
+        const data = JSON.parse(dataFeturedItems);
+        console.log(data);
+        const content = document.querySelector('.content_js');
+        const template = document.querySelector('.template');
+
+        function browseProduct() {
+            let startBrowse = 0;
+            let endBrowse = startBrowse + 6;
+
+            if (endBrowse >= data.length) {
+                numberBrowse = 0;
+            }
+
+            data.slice(startBrowse, endBrowse).forEach(element => {
+
+                const product = template.content.querySelector('.content').cloneNode(true);
+
+                const image = product.querySelector('.image');
+                image.src = element.image;
+
+                const name = product.querySelector('.name');
+                name.textContent = element.name;
+
+                const description = product.querySelector('.description');
+                description.textContent = element.description;
+
+                const price = product.querySelector('.price');
+                price.textContent = element.price;
+
+                content.appendChild(product);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function (e) {
+            browseProduct();
+        });
+        const buttonEl = document.querySelector('.button_browse_all');
+        buttonEl.addEventListener('click', function (e) {
+            browseProduct();
+        });
+
+        //______________________________________________________Корзина
+
+        const countText = document.querySelector('.Count_text');
+        const countRound = document.querySelector('.Count_round');
+        const addLink = document.querySelector('.add');
+        const quantity = document.querySelector(name = "nameInput");
+        const textBasket = document.querySelector('.text_basket');
+        const basket = document.querySelector('.basket');
+        console.log(quantity);
+        let countProduct = 0;
+        let countQuantity = 1;
+
+        const scrollBtn = document.querySelector('.add');
+        const head = document.querySelector('.box');
+        // const scrollPosition = 0;
+        scrollBtn.addEventListener('click', function (e) {
+            head.classList.add('fix_head');
+            basket.style.display = 'block';
+            window.addEventListener('scroll', function (e) {//scroll для head
+
+                const headling = head.getBoundingClientRect().height
+                //console.log(window.pageYOffset);//координаты прокрутки
+                if (window.pageYOffset > 0) {
+                    head.classList.add('fix_head');
+                    content.style.paddingTop = headling + 30 + "px";
+                }
+                else {
+                    head.classList.remove('fix_head');
+                    content.style.paddingTop = 0;
+                }
+            });
+        });
+
+
+        this.addEventListener('click', function (e) {
+            // console.log(e.srcElement);
+            const indexs = document.querySelectorAll('.button_buy');
+            // console.log(document.querySelectorAll('.button_buy'));       
+            for (let i = 0; i < indexs.length; i++) {
+                if (indexs[i] == e.srcElement) {
+                    // console.log(i);
+                    const index = i;
+                    textBasket.style.visibility = 'hidden';
+                    // console.log(index)
+                    countProduct++;
+                    console.log(countProduct);
+                    countRound.style.visibility = 'visible';
+                    countText.style.visibility = 'visible';
+                    countText.textContent = countProduct;
+
+                    const content = document.querySelector('.content_basket');
+                    const template = document.querySelector('.template_basket');
+                    const productAdd = template.content.querySelector('.basket_block').cloneNode(true);
+                    const blockImage = productAdd.querySelector('.image_add');
+                    blockImage.src = data[index].image;
+                    const name = productAdd.querySelector('.basket_name');
+                    name.textContent = data[index].name;
+                    const description = productAdd.querySelector('.basket_description');
+                    description.textContent = data[index].description;
+                    const price = productAdd.querySelector('.priceColor');
+                    price.textContent = data[index].price;
+                    content.appendChild(productAdd);
+
+                    if (e.srcElement == indexs[i + 1]) {
+                        productAdd.remove();
+                    }
+
+                    const close = productAdd.querySelector('.close');
+                    close.addEventListener('click', function (e) {
+                        console.log(content);
+                        console.log(content.childElementCount);
+                        let reverseCount = content.childElementCount
+                        console.log(i);
+
+                        productAdd.remove();
+                        countText.textContent = reverseCount - 1;
+                        countProduct = reverseCount - 1;
+
+                        if ((reverseCount - 1) === 0) {
+                            countProduct = 0;
+                            textBasket.style.visibility = 'visible';
+                            countRound.style.visibility = 'hidden';
+                            countText.style.visibility = 'hidden';
+                            basket.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        });
+
+        
+           
+
+                // console.log(productAdd);
+                // if (!e.target.classList.contains('basket_block'))
+                // quantity.getAttribute('value');
+                // quantity.setAttribute('value', 10);
+                // if(productAdd) {
+                //     countQuantity++;
+                //     quantity.values = countQuantity;
+                // }     
+     
+            </script>
+</body>
+</html>
